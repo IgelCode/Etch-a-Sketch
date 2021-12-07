@@ -1,11 +1,36 @@
 const container = document.querySelector(".container");
 const resizebtn = document.querySelector("#resizebtn");
+const clearbtn = document.querySelector("#clearbtn");
 let sqrnr = 16;
 let squares = sqrnr * sqrnr;
 let i;
 let grid;
+let isClick = false;
 
-//Initial Grid on first load
+// EventListeners to detect mousedown
+container.addEventListener("mousedown", () => {
+  isClick = true;
+});
+container.addEventListener("mouseup", () => {
+  isClick = false;
+});
+
+// Clearing the Grid - not working
+clearbtn.addEventListener("click", () => {
+  const grids = document.querySelectorAll(".grid");
+  grids.forEach((grid) => {
+    grid.style.backgroundColor = "white";
+  });
+});
+
+// BG Color Change of the Grid Items
+container.addEventListener("mouseover", (event) => {
+  if (isClick) {
+    event.target.style.backgroundColor = "black";
+  }
+});
+
+// Initial Grid on first load
 function initialGrid() {
   for (i = 0; i < squares; i++) {
     grid = document.createElement("div");
@@ -15,16 +40,10 @@ function initialGrid() {
 }
 initialGrid();
 
-//BG Color Change of the Grid Items
-container.addEventListener(
-  "mouseover",
-  (event) => (event.target.style.backgroundColor = "black")
-);
-
-//Prompt Change to new Number of Squares
+// Prompt Change to new Number of Squares
 resizebtn.addEventListener("click", getSqrnr);
 
-//Function to Change the sqrnr with the prompt + calling changeGrid
+// Function to Change the sqrnr with the prompt + calling changeGrid
 function getSqrnr() {
   sqrnr = prompt("How many Squares do you want? Maximum is 100.");
   if (sqrnr < 100) {
@@ -37,28 +56,30 @@ function getSqrnr() {
   }
 }
 
-//Function to find the new Number of Squares
+// Function to find the new Number of Squares
 function getSquares() {
   squares = sqrnr * sqrnr;
 }
-//Changing the Grid after Prompt
+// Changing the Grid after Prompt
 function changeGrid() {
   if (i < squares) {
     for (i = 0; i < squares; i++) {
       grid = document.createElement("div");
       grid.className = "grid";
       container.appendChild(grid);
+      grid.style.flex = `1 0 ${100 / sqrnr}%`;
     }
   } else if (i > squares) {
     for (i = 0; i < squares; i++) {
       grid = document.createElement("div");
       grid.className = "grid";
       container.appendChild(grid);
+      grid.style.flex = `1 0 ${100 / sqrnr}%`;
     }
   }
 }
 
-//removing the Grid befor a fresh one can be made
+// Removing the Grid befor a fresh one can be made
 function removeGrid() {
   while (container.firstChild) {
     container.firstChild.remove();
