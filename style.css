@@ -1,0 +1,44 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+body {
+  background-color: #b4c9ce;
+  background-image: url(kunst.jpg);
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 20px;
+}
+h1 {
+  padding: 20px;
+}
+h1:hover {
+  background-color: chartreuse;
+}
+#resizebtn {
+  margin: 20px;
+  width: 200px;
+  height: 50px;
+}
+.container {
+  display: flex;
+  flex-flow: row wrap;
+  border-style: solid;
+  width: 500px;
+  height: 500px;
+}
+.grid {
+  background-color: white;
+  display: flex;
+  flex: 1 0 6%;
+}
+.grid:hover:after {
+  background-color: black;
+}
+
+footer {
+  padding: 20px;
+}
