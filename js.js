@@ -18,10 +18,31 @@ document.addEventListener("mouseup", () => {
 });
 
 // BG Color Change of the Grid Items
+container.addEventListener("mouseover", color);
+if (isClick) {
+  if (grid.target.style.filter === "brightness(80%)") {
+    grid.target.style.filter = "brightness(60%)";
+  } else if (grid.target.style.filter === "brightness(60%)") {
+    grid.target.style.filter = "brightness(40%)";
+  } else if (grid.target.style.filter === "brightness(40%)") {
+    grid.target.style.filter = "brightness(20%)";
+  } else if (grid.target.style.filter === "brightness(20%)") {
+    grid.target.style.filter = "brightness(0%)";
+  } else if (grid.target.style.filter === "brightness(0%)") {
+    grid.target.style.filter = "brightness(0%)";
+  } else {
+    grid.target.style.filter = "brightness(80%)";
+  }
+  container.style.filter = "brightness(100%)";
+}
 
-// Color
+// Show active Mode
+
+// Colorbutton
 colorbtn.addEventListener("click", color);
 function color(grid) {
+  colorbtn.style.backgroundColor = "rgb(221, 167, 96)";
+  rubberbtn.style.backgroundColor = "rgb(192,192,192)";
   container.removeEventListener("mouseover", rubber);
   container.addEventListener("mouseover", color);
   if (isClick) {
@@ -45,6 +66,8 @@ function color(grid) {
 // Rubber
 rubberbtn.addEventListener("click", rubber);
 function rubber(grid) {
+  rubberbtn.style.backgroundColor = "rgb(221, 167, 96)";
+  colorbtn.style.backgroundColor = "rgb(192,192,192)";
   container.removeEventListener("mouseover", color);
   container.addEventListener("mouseover", rubber);
   if (isClick) {
