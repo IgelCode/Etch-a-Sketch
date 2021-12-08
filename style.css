@@ -16,10 +16,28 @@ h1 {
   padding: 20px;
 }
 #resizebtn,
-#clearbtn {
+#clearbtn,
+#rubberbtn {
   margin: 20px;
   width: 200px;
   height: 50px;
+  background-color: burlywood;
+  border-style: hidden;
+  border-radius: 10px;
+  font-size: 20px;
+  color: white;
+  font-weight: 700;
+}
+#resizebtn:hover,
+#clearbtn:hover,
+#rubberbtn:hover {
+  background-color: rgb(221, 167, 96);
+}
+#resizebtn:active,
+#clearbtn:active,
+#rubberbtn:active {
+  opacity: 70%;
+  transition: all 0.1s;
 }
 .container {
   display: flex;

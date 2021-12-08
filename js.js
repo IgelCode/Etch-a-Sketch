@@ -1,6 +1,7 @@
 const container = document.querySelector(".container");
 const resizebtn = document.querySelector("#resizebtn");
 const clearbtn = document.querySelector("#clearbtn");
+const rubebrbtn = document.querySelector("rubberbtn");
 let sqrnr = 16;
 let squares = sqrnr * sqrnr;
 let grid;
@@ -15,32 +16,42 @@ container.addEventListener("mouseup", () => {
   isClick = false;
 });
 
-// Clearing the Grid - not working
+// BG Color Change of the Grid Items
+container.addEventListener("mouseover", (grid) => {
+  if (isClick) {
+    if (grid.target.style.filter === "brightness(80%)") {
+      grid.target.style.filter = "brightness(60%)";
+    } else if (grid.target.style.filter === "brightness(60%)") {
+      grid.target.style.filter = "brightness(40%)";
+    } else if (grid.target.style.filter === "brightness(40%)") {
+      grid.target.style.filter = "brightness(20%)";
+    } else if (grid.target.style.filter === "brightness(20%)") {
+      grid.target.style.filter = "brightness(0%)";
+    } else if (grid.target.style.filter === "brightness(0%)") {
+      grid.target.style.filter = "brightness(0%)";
+    } else {
+      grid.target.style.filter = "brightness(80%)";
+    }
+    container.style.filter = "brightness(100%)";
+  }
+});
+
+// Clearing the Grid
 clearbtn.addEventListener("click", () => {
+  container.style.filter = "brightness(100%)";
   const grids = document.querySelectorAll(".grid");
   grids.forEach((grid) => {
     grid.style.filter = "brightness(100%)";
   });
 });
 
-// BG Color Change of the Grid Items
-container.addEventListener("mouseover", (event) => {
+// Rubber
+/*rubberbtn.addEventListener("click", doRub);
+function doRub() {
   if (isClick) {
-    if (event.target.style.filter === "brightness(80%)") {
-      event.target.style.filter = "brightness(60%)";
-    } else if (event.target.style.filter === "brightness(60%)") {
-      event.target.style.filter = "brightness(40%)";
-    } else if (event.target.style.filter === "brightness(40%)") {
-      event.target.style.filter = "brightness(20%)";
-    } else if (event.target.style.filter === "brightness(20%)") {
-      event.target.style.filter = "brightness(0%)";
-    } else if (event.target.style.filter === "brightness(0%)") {
-      event.target.style.filter = "brightness(0%)";
-    } else {
-      event.target.style.filter = "brightness(80%)";
-    }
+    grid.target.style.filter === "brightness(100%)";
   }
-});
+} */
 
 // Initial Grid on first load
 function initialGrid() {
@@ -61,7 +72,7 @@ function getSqrnr() {
   if (!sqrnr) {
     sqrnr = 16;
   }
-  if (sqrnr < 100 || sqrnr > 0) {
+  if (sqrnr < 100) {
     getSquares();
     removeGrid();
     changeGrid();
