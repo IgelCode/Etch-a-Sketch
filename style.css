@@ -11,13 +11,15 @@ body {
   align-items: center;
   flex-direction: column;
   gap: 20px;
+  user-select: none;
 }
 h1 {
   padding: 20px;
 }
 #resizebtn,
 #clearbtn,
-#rubberbtn {
+#rubberbtn,
+#colorbtn {
   margin: 20px;
   width: 200px;
   height: 50px;
@@ -30,12 +32,14 @@ h1 {
 }
 #resizebtn:hover,
 #clearbtn:hover,
-#rubberbtn:hover {
+#rubberbtn:hover,
+#colorbtn:hover {
   background-color: rgb(221, 167, 96);
 }
 #resizebtn:active,
 #clearbtn:active,
-#rubberbtn:active {
+#rubberbtn:active,
+#colorbtn:active {
   opacity: 70%;
   transition: all 0.1s;
 }
@@ -51,14 +55,19 @@ h1 {
   justify-content: space-between;
   gap: 50px;
   align-items: center;
-  line-height: 50px;
+  line-height: 40px;
 }
 .left {
-  width: 400px;
+  display: flex;
+  width: 300px;
   height: auto;
 }
 .right {
-  width: 400px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 300px;
   height: auto;
 }
 .grid {
@@ -67,5 +76,7 @@ h1 {
   flex: 1 0 6.25%;
 }
 footer {
+  position: absolute;
   padding: 20px;
+  bottom: 0;
 }

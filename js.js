@@ -1,23 +1,30 @@
 const container = document.querySelector(".container");
 const resizebtn = document.querySelector("#resizebtn");
 const clearbtn = document.querySelector("#clearbtn");
-const rubebrbtn = document.querySelector("rubberbtn");
+const rubberbtn = document.querySelector("#rubberbtn");
+const colorbtn = document.querySelector("#colorbtn");
 let sqrnr = 16;
 let squares = sqrnr * sqrnr;
 let grid;
 let isClick = false;
 
 // EventListeners to detect mousedown
-container.addEventListener("mousedown", () => {
+document.addEventListener("mousedown", () => {
   isClick = true;
 });
 
-container.addEventListener("mouseup", () => {
+document.addEventListener("mouseup", () => {
   isClick = false;
 });
 
 // BG Color Change of the Grid Items
-container.addEventListener("mouseover", (grid) => {
+
+// Color
+
+colorbtn.addEventListener("click", color);
+function color(grid) {
+  container.removeEventListener("mouseover", rubber);
+  container.addEventListener("mouseover", color);
   if (isClick) {
     if (grid.target.style.filter === "brightness(80%)") {
       grid.target.style.filter = "brightness(60%)";
@@ -34,7 +41,17 @@ container.addEventListener("mouseover", (grid) => {
     }
     container.style.filter = "brightness(100%)";
   }
-});
+}
+
+// Rubber
+rubberbtn.addEventListener("click", rubber);
+function rubber(grid) {
+  container.removeEventListener("mouseover", color);
+  container.addEventListener("mouseover", rubber);
+  if (isClick) {
+    grid.target.style.filter = "brightness(100%)";
+  }
+}
 
 // Clearing the Grid
 clearbtn.addEventListener("click", () => {
@@ -44,14 +61,6 @@ clearbtn.addEventListener("click", () => {
     grid.style.filter = "brightness(100%)";
   });
 });
-
-// Rubber
-/*rubberbtn.addEventListener("click", doRub);
-function doRub() {
-  if (isClick) {
-    grid.target.style.filter === "brightness(100%)";
-  }
-} */
 
 // Initial Grid on first load
 function initialGrid() {
