@@ -3,7 +3,6 @@ const resizebtn = document.querySelector("#resizebtn");
 const clearbtn = document.querySelector("#clearbtn");
 let sqrnr = 16;
 let squares = sqrnr * sqrnr;
-let i;
 let grid;
 let isClick = false;
 
@@ -11,6 +10,7 @@ let isClick = false;
 container.addEventListener("mousedown", () => {
   isClick = true;
 });
+
 container.addEventListener("mouseup", () => {
   isClick = false;
 });
@@ -38,7 +38,6 @@ function initialGrid() {
     container.appendChild(grid);
   }
 }
-initialGrid();
 
 // Prompt Change to new Number of Squares
 resizebtn.addEventListener("click", getSqrnr);
@@ -46,12 +45,16 @@ resizebtn.addEventListener("click", getSqrnr);
 // Function to Change the sqrnr with the prompt + calling changeGrid
 function getSqrnr() {
   sqrnr = prompt("How many Squares do you want? Maximum is 100.");
-  if (sqrnr < 100) {
+  sqrnr = parseInt(sqrnr || 0);
+  if (!sqrnr) {
+    sqrnr = 16;
+  }
+  if (sqrnr < 100 || sqrnr > 0) {
     getSquares();
     removeGrid();
     changeGrid();
   } else {
-    alert("Too many!");
+    alert("Bad input");
     return;
   }
 }
@@ -60,22 +63,14 @@ function getSqrnr() {
 function getSquares() {
   squares = sqrnr * sqrnr;
 }
+
 // Changing the Grid after Prompt
 function changeGrid() {
-  if (i < squares) {
-    for (i = 0; i < squares; i++) {
-      grid = document.createElement("div");
-      grid.className = "grid";
-      container.appendChild(grid);
-      grid.style.flex = `1 0 ${100 / sqrnr}%`;
-    }
-  } else if (i > squares) {
-    for (i = 0; i < squares; i++) {
-      grid = document.createElement("div");
-      grid.className = "grid";
-      container.appendChild(grid);
-      grid.style.flex = `1 0 ${100 / sqrnr}%`;
-    }
+  for (let i = 0; i < squares; i++) {
+    grid = document.createElement("div");
+    grid.className = "grid";
+    container.appendChild(grid);
+    grid.style.flex = `1 0 ${100 / sqrnr}%`;
   }
 }
 
@@ -85,3 +80,4 @@ function removeGrid() {
     container.firstChild.remove();
   }
 }
+initialGrid();
