@@ -20,7 +20,6 @@ document.addEventListener("mouseup", () => {
 // BG Color Change of the Grid Items
 
 // Color
-
 colorbtn.addEventListener("click", color);
 function color(grid) {
   container.removeEventListener("mouseover", rubber);
