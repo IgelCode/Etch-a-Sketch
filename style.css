@@ -15,9 +15,6 @@ body {
 h1 {
   padding: 20px;
 }
-h1:hover {
-  background-color: chartreuse;
-}
 #resizebtn,
 #clearbtn {
   margin: 20px;
@@ -51,10 +48,6 @@ h1:hover {
   display: flex;
   flex: 1 0 6.25%;
 }
-.grid:hover:after {
-  background-color: black;
-}
-
 footer {
   padding: 20px;
 }

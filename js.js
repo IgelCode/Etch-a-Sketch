@@ -19,14 +19,26 @@ container.addEventListener("mouseup", () => {
 clearbtn.addEventListener("click", () => {
   const grids = document.querySelectorAll(".grid");
   grids.forEach((grid) => {
-    grid.style.backgroundColor = "white";
+    grid.style.filter = "brightness(100%)";
   });
 });
 
 // BG Color Change of the Grid Items
 container.addEventListener("mouseover", (event) => {
   if (isClick) {
-    event.target.style.backgroundColor = "black";
+    if (event.target.style.filter === "brightness(80%)") {
+      event.target.style.filter = "brightness(60%)";
+    } else if (event.target.style.filter === "brightness(60%)") {
+      event.target.style.filter = "brightness(40%)";
+    } else if (event.target.style.filter === "brightness(40%)") {
+      event.target.style.filter = "brightness(20%)";
+    } else if (event.target.style.filter === "brightness(20%)") {
+      event.target.style.filter = "brightness(0%)";
+    } else if (event.target.style.filter === "brightness(0%)") {
+      event.target.style.filter = "brightness(0%)";
+    } else {
+      event.target.style.filter = "brightness(80%)";
+    }
   }
 });
 
